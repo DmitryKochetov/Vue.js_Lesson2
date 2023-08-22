@@ -1,0 +1,94 @@
+<!-- Вы разрабатываете приложение для отображения и сортировки списка товаров. 
+У вас есть массив объектов products, где каждый объект представляет товар 
+с его названием и ценой. Вам необходимо отобразить список товаров и 
+предоставить пользователю возможность сортировать товары по цене 
+(по возрастанию и по убыванию). -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <button @click="sortUp()" class="button">Сортировка по цене по возрастанию</button>
+            <button @click="sortDown()" class="button">Сортировка по цене по убыванию</button>
+            <div class="cardSet">
+                <div v-for="item in products" class="card">
+                    <h2 class="card__productPrice">price: {{item.price}}</h2>
+                    <img :src="item.url" alt="product" class="card__productImage">
+                    <h1 class="card__productName">Name: {{item.name}}</h1>
+                    <h2 class="card__productDescription">Description: {{item.description}}</h2>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                products: [
+                    {
+                        name: `product 1`,
+                        description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, cumque.`,
+                        price: 99,
+                        url: "productPicture.png",
+                    },
+                    {
+                        name: `product 2`,
+                        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, numquam.`,
+                        price: 54,
+                        url: "productPicture.png",
+                    },
+                    {
+                        name: `product 3`,
+                        description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam, aut.`,
+                        price: 10,
+                        url: "productPicture.png",
+                    },
+                    {
+                        name: `product 4`,
+                        description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. A, doloribus.`,
+                        price: 150,
+                        url: "productPicture.png",
+                    },
+                    {
+                        name: `product 5`,
+                        description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint, vitae?`,
+                        price: 202,
+                        url: "productPicture.png",
+                    },
+                ]
+            },
+            methods: {
+                sortUp() {
+                    this.products.sort((function (a, b) {
+                        return a.price - b.price;
+                    }))
+                },
+                sortDown() {
+                    this.products.sort((function (a, b) {
+                        return b.price - a.price;
+                    }))
+                }
+
+            },
+        })
+         
+
+    </script>
+
+</body>
+
+</html>
